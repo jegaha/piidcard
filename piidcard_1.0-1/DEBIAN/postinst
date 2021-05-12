@@ -1,0 +1,8 @@
+# postinst
+sudo pip3 install --upgrade adafruit-python-shell
+sudo pip3 install --upgrade RPi.GPIO
+sudo pip3 install --upgrade adafruit-blinka
+sudo pip3 install --upgrade adafruit-circuitpython-ssd1306
+# sudo usermod -a -G i2c ubuntu 
+systemctl enable piidcard
+systemctl start piidcard
