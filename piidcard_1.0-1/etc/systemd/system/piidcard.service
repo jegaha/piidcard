@@ -1,0 +1,13 @@
+[Unit]
+ Description=PiIdCard info Display
+ ConditionPathExists=/usr/local/bin/piidcard.py
+
+[Service]
+ ExecStart=python3 /usr/local/bin/piidcard.py &
+ TimeoutSec=0
+ StandardOutput=tty
+ RemainAfterExit=yes
+ SysVStartPriority=99
+
+[Install]
+ WantedBy=multi-user.target
