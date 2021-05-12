@@ -1,7 +1,14 @@
-# build package
+# Pi Id Card
+This package will install a small Python script wich runs to inform about some system facts on an i2c OLED-Display.
 
-dpkg-deb --build piidcard_1.0-1
+## build package
 
-# install package
+dpkg-deb --build piidcard_1.0-2
 
-sudo dpkg -i piidcard_1.0-1.deb
+## install package
+
+sudo dpkg -i piidcard_1.0-2.deb
+
+## start/stop Service
+    systemctl start piidcard
+    systemctl stop piidcard

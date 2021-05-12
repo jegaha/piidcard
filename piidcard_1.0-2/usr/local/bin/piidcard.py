@@ -80,6 +80,6 @@ while True:
     draw.text((x, top + 25), Disk, font=font, fill=255)
 
     # Display image.
-    disp.image(image)
+    disp.image(image.rotate(180))
     disp.show()
     time.sleep(0.1)
