@@ -3,7 +3,8 @@ This package will install a small Python script wich runs to inform about some s
 
 ## build package
 
-dpkg-deb --build piidcard_1.0-2
+    native:# dpkg-deb --build piidcard_1.0-2
+    docker:# docker run -it -v $PWD:/mnt --workdir /mnt debian dpkg-deb --build piidcard_1.0-2
 
 ## install package
 
