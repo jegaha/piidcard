@@ -8,6 +8,7 @@
  StandardOutput=tty
  RemainAfterExit=yes
  SysVStartPriority=99
+ TimeoutStopSec=4
 
 [Install]
  WantedBy=multi-user.target

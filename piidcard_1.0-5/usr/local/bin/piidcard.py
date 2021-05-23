@@ -41,7 +41,7 @@ def drawHostIP():
     cmd = "hostname"
     Host = subprocess.check_output(cmd, shell=True).decode("utf-8")
     cmd = "hostname -I | cut -d' ' -f1"
-    IP = subprocess.check_output(cmd, shell=True).decode("utf-8")  
+    IP = subprocess.check_output(cmd, shell=True).decode("utf-8")
     draw.text((x, top + 0), Host , font=font, fill=255)
     draw.text((x, top + 16), IP, font=font, fill=255)
     return
@@ -76,7 +76,7 @@ def drawHDD():
 def show():
     disp.image(image.rotate(180))
     disp.show()
-    return 
+    return
 
 def cardHostIP():
     drawClear()
@@ -111,6 +111,7 @@ def cardShutdown():
     drawClear()
     draw.text((x+20, top+8 ), "Shutdown...", font=font, fill=255)
     show()
+    time.sleep(0.2)
     return
 
 class GracefulKiller:
@@ -124,10 +125,13 @@ class GracefulKiller:
 
 if __name__ == '__main__':
     killer = GracefulKiller()
+    cardIndex = -1;
+
+    cards = [cardHostIP, cardCPU, cardMem, cardHDD]
     while not killer.kill_now:
-        cardHostIP()
-        cardCPU()
-        cardMem()
-        cardHDD()
+        cardIndex = cardIndex +1
+        if cardIndex >= len(cards):
+            cardIndex = 0
+        cards[cardIndex]()
 
     cardShutdown()
