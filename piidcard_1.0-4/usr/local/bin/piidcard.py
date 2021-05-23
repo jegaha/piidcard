@@ -1,5 +1,6 @@
 import time
 import subprocess
+import signal
 
 from board import SCL, SDA
 import busio
@@ -106,8 +107,27 @@ def cardHDD():
     time.sleep(3)
     return
 
-while True:
-    cardHostIP()
-    cardCPU()
-    cardMem()
-    cardHDD()
+def cardShutdown():
+    drawClear()
+    draw.text((x+20, top+8 ), "Shutdown...", font=font, fill=255)
+    show()
+    return
+
+class GracefulKiller:
+    kill_now = False
+    def __init__(self):
+        signal.signal(signal.SIGINT, self.exit_gracefully)
+        signal.signal(signal.SIGTERM, self.exit_gracefully)
+
+    def exit_gracefully(self,signum, frame):
+        self.kill_now = True
+
+if __name__ == '__main__':
+    killer = GracefulKiller()
+    while not killer.kill_now:
+        cardHostIP()
+        cardCPU()
+        cardMem()
+        cardHDD()
+
+    cardShutdown()
