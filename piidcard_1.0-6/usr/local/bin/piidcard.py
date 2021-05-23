@@ -82,29 +82,23 @@ def cardHostIP():
     drawClear()
     drawHostIP()
     show()
-    time.sleep(3)
     return
 
 def cardCPU():
-    for i in range(1, 10):
-        drawClear()
-        drawCPU();
-        show()
-        time.sleep(.3)
-    return
+    drawClear()
+    drawCPU();
+    show()
 
 def cardMem():
     drawClear()
     drawMem()
     show()
-    time.sleep(3)
     return
 
 def cardHDD():
     drawClear()
     drawHDD()
     show()
-    time.sleep(3)
     return
 
 def cardShutdown():
@@ -123,15 +117,22 @@ class GracefulKiller:
     def exit_gracefully(self,signum, frame):
         self.kill_now = True
 
+def calculateCardIndexByTime(cards, duration: int):
+    amountOfCards = len(cards)
+    timestamp = int(time.time())
+    index = int(timestamp / duration) % amountOfCards
+    return index
+
 if __name__ == '__main__':
     killer = GracefulKiller()
     cardIndex = -1;
 
     cards = [cardHostIP, cardCPU, cardMem, cardHDD]
+    duration = 3;
+
     while not killer.kill_now:
-        cardIndex = cardIndex +1
-        if cardIndex >= len(cards):
-            cardIndex = 0
+        cardIndex = calculateCardIndexByTime(cards, duration)
         cards[cardIndex]()
+        time.sleep(0.5)
 
     cardShutdown()
