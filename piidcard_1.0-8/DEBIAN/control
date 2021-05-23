@@ -1,9 +1,10 @@
 Package: piidcard
-Version: 1.0-6
+Version: 1.0-8
 Section: base
 Priority: optional
 Architecture: all
 Depends: i2c-tools, python3, python3-pip, python3-pil, fonts-arkpandora
+Suggests: ntp
 Maintainer: Jens Gabrikowski <jens@gabrikowski.de>
 Description: PiIdCard
  Package to install and run PiIdCard on a Raspberry Pi.

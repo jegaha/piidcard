@@ -128,11 +128,11 @@ if __name__ == '__main__':
     cardIndex = -1;
 
     cards = [cardHostIP, cardCPU, cardMem, cardHDD]
-    duration = 3;
+    duration = 4;
 
     while not killer.kill_now:
         cardIndex = calculateCardIndexByTime(cards, duration)
         cards[cardIndex]()
-        time.sleep(0.5)
+        time.sleep(0.2)
 
     cardShutdown()

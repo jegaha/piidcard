@@ -5,4 +5,4 @@ sudo pip3 install --upgrade adafruit-blinka
 sudo pip3 install --upgrade adafruit-circuitpython-ssd1306
 # sudo usermod -a -G i2c ubuntu 
 systemctl enable piidcard
-systemctl start piidcard
+systemctl restart piidcard
